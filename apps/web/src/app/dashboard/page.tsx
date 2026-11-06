@@ -1,5 +1,8 @@
 
+import { connection } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+
+export const instant = false;
 
 const stats = [
   { label: "Ventas de hoy", value: "—", icon: "💰" },
@@ -9,11 +12,22 @@ const stats = [
 ];
 
 export default async function DashboardPage() {
+  // Impide que la autenticación se ejecute
+  // durante el prerenderizado.
+  await connection();
+
   const supabase = await createClient();
 
   const {
     data: { user },
+    error,
   } = await supabase.auth.getUser();
+
+  if (error || !user) {
+    // El layout ya protege esta ruta.
+    // No mostramos datos privados si falta la sesión.
+    return null;
+  }
 
   return (
     <div className="space-y-8">
@@ -27,7 +41,7 @@ export default async function DashboardPage() {
         </h1>
 
         <p className="mt-2 text-slate-500">
-          Sesión iniciada como {user?.email}
+          Sesión iniciada como {user.email}
         </p>
       </div>
 

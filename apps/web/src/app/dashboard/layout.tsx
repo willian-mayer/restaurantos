@@ -1,13 +1,20 @@
 
+import { connection } from "next/server";
 import { redirect } from "next/navigation";
+
 import { createClient } from "@/lib/supabase/server";
-import Sidebar from "@/components/dashboard/sidebar.tsx";
+import Sidebar from "@/components/dashboard/sidebar";
+
+// Permite renderizado bloqueante para esta ruta.
+export const instant = false;
 
 export default async function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode;    
+  children: React.ReactNode;
 }) {
+  await connection();
+
   const supabase = await createClient();
 
   const {
