@@ -1,15 +1,15 @@
 
 import Link from "next/link";
-import LogoutButton from "@/components/dashboard/logout-button";
+import LogoutButton from "./logout-button";
 
 const navigation = [
-  { label: "Inicio", href: "/dashboard", icon: "🏠" },
-  { label: "Mesas", href: "/dashboard/tables", icon: "🪑" },
-  { label: "Pedidos", href: "/dashboard/orders", icon: "🧾" },
-  { label: "Menú", href: "/dashboard/menu", icon: "🍽️" },
-  { label: "Empleados", href: "/dashboard/staff", icon: "👥" },
-  { label: "Reportes", href: "/dashboard/reports", icon: "📊" },
-  { label: "Configuración", href: "/dashboard/settings", icon: "⚙️" },
+  { label: "Overview", href: "/dashboard", icon: "🏠" },
+  { label: "Tables", href: "/dashboard/tables", icon: "🪑" },
+  { label: "Orders", href: "/dashboard/orders", icon: "🧾" },
+  { label: "Menu", href: "/dashboard/menu", icon: "🍽️" },
+  { label: "Staff", href: "/dashboard/staff", icon: "👥" },
+  { label: "Analytics", href: "/dashboard/reports", icon: "📊" },
+  { label: "Settings", href: "/dashboard/settings", icon: "⚙️" },
 ];
 
 export default function Sidebar({

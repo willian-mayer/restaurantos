@@ -13,7 +13,7 @@ export default function LogoutButton() {
     const { error } = await supabase.auth.signOut();
 
     if (error) {
-      console.error("Error al cerrar sesión:", error.message);
+      console.error("Failed to sign out:", error.message);
       return;
     }
 
@@ -26,7 +26,7 @@ export default function LogoutButton() {
       onClick={handleLogout}
       className="w-full rounded-xl bg-red-50 px-4 py-3 text-left text-sm font-medium text-red-600 hover:bg-red-100"
     >
-      Cerrar sesión
+      Sign out
     </button>
   );
 }

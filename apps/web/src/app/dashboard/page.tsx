@@ -5,15 +5,13 @@ import { createClient } from "@/lib/supabase/server";
 export const instant = false;
 
 const stats = [
-  { label: "Ventas de hoy", value: "—", icon: "💰" },
-  { label: "Pedidos activos", value: "—", icon: "🧾" },
-  { label: "Mesas ocupadas", value: "—", icon: "🪑" },
-  { label: "Clientes atendidos", value: "—", icon: "👥" },
+  { label: "Today's Revenue", value: "—", icon: "💰" },
+  { label: "Active Orders", value: "—", icon: "🧾" },
+  { label: "Occupied Tables", value: "—", icon: "🪑" },
+  { label: "Guests Served", value: "—", icon: "👥" },
 ];
 
 export default async function DashboardPage() {
-  // Impide que la autenticación se ejecute
-  // durante el prerenderizado.
   await connection();
 
   const supabase = await createClient();
@@ -24,8 +22,6 @@ export default async function DashboardPage() {
   } = await supabase.auth.getUser();
 
   if (error || !user) {
-    // El layout ya protege esta ruta.
-    // No mostramos datos privados si falta la sesión.
     return null;
   }
 
@@ -33,15 +29,15 @@ export default async function DashboardPage() {
     <div className="space-y-8">
       <div>
         <p className="text-sm font-medium text-slate-500">
-          Panel administrativo
+          Dashboard Overview
         </p>
 
         <h1 className="mt-2 text-3xl font-bold text-slate-900">
-          Bienvenido a RestaurantOS 👋
+          Welcome to RestaurantOS 👋
         </h1>
 
         <p className="mt-2 text-slate-500">
-          Sesión iniciada como {user.email}
+          Signed in as {user.email}
         </p>
       </div>
 
@@ -67,22 +63,21 @@ export default async function DashboardPage() {
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="rounded-2xl border border-slate-200 bg-white p-6">
           <h2 className="text-lg font-semibold text-slate-900">
-            Pedidos recientes
+            Recent Orders
           </h2>
 
           <p className="mt-6 text-sm text-slate-500">
-            Todavía no hay pedidos para mostrar.
+            No orders to display yet.
           </p>
         </section>
 
         <section className="rounded-2xl border border-slate-200 bg-white p-6">
           <h2 className="text-lg font-semibold text-slate-900">
-            Estado de las mesas
+            Table Status
           </h2>
 
           <p className="mt-6 text-sm text-slate-500">
-            Configura tu restaurante para comenzar
-            a administrar las mesas.
+            Set up your restaurant to start managing tables.
           </p>
         </section>
       </div>
