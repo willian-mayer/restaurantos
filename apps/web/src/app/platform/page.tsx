@@ -78,7 +78,7 @@ export default async function PlatformPage() {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <p className="text-sm font-medium text-slate-500">
-                RestaurantOS Platform
+                Restaurant Platform
               </p>
 
               <h1 className="mt-2 text-3xl font-bold text-slate-900">
